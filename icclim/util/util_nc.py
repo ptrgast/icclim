@@ -180,24 +180,22 @@ def set_time_values(nc, time_steps_arr_dt, calend, units):
 def set_timebnds_values(nc, time_bnds_dt, calend, units):
     time_bnds_num = numpy.array([util_dt.date2num(i, calend, units) for i in time_bnds_dt])
     nc.variables['time_bnds'][:,:] = time_bnds_num[:,:]
-    
-    
-def copy_var_dim(inc, onc, var, lev_dim_pos=1): 
+
+
+def copy_var_dim(inc, onc, var, lev_dim_pos=1):
     '''
     Copies the spatial coordinate variables (e.g.: lat, lon) of a variable (var) from one NetCDF file (ifile) to another (out_file)
     and returns list of coordinates variables.
-    
+
     :param inc: input dataset
     :type inc: netCDF4.Dataset
     :param onc: output dataset
     :type onc: netCDF4.Dataset
     :param var: variable name to process
     :type var: str
-    :param project: project name ("CMIP5" or "CORDEX")
-    :type project: str
     :param lev_dim_pos: Position of Level dimension, either 0 or 1. 0 is leftmost dimension, 1 is second to the leftmost. Default 1.
     :type lev_dim_pos: int
-    
+
     :rtype: tuple of str (coordinate variables: 'time', 'lat', 'lon')
     '''
 
@@ -377,20 +375,18 @@ def get_values_arr_and_dt_arr(ncVar_temporal, ncVar_values, fill_val=None, time_
         values_arr = values_arr[indices_masked_Feb29th,:,:]
 
     #values_arr = values_arr.astype(numpy.float64)
-    
+
     return (dt_arr, values_arr)
 
-def list_var_dim(inc, var): 
+def list_var_dim(inc, var):
     '''
     Get the spatial coordinate variables (e.g.: lat, lon) of a variable (var) from one NetCDF file (ifile) and returns list of coordinates variables.
-    
+
     :param inc: input dataset
     :type inc: netCDF4.Dataset
     :param var: variable name to process
     :type var: str
-    :param project: project name ("CMIP5" or "CORDEX")
-    :type project: str
-    
+
     :rtype: tuple of str (coordinate variables: 'time', 'lat', 'lon')
     '''
 
